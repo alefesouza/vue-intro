@@ -15,17 +15,17 @@
 export default {
     name: 'Counter',
     props: ['avisar'],
-    data() {
-        return {
-            counter: 0,
+    computed: {
+        counter() {
+            return this.$store.state.counter;
         }
     },
     methods: {
-        decrement() {
-            this.counter--;
-        },
         increment() {
-            this.counter++;
+            this.$store.dispatch('increment');
+        },
+        decrement() {
+            this.$store.dispatch('decrement');
         }
     }
 }
