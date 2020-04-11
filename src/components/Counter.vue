@@ -1,32 +1,31 @@
 <template>
+  <div>
+    Contador: {{ counter }}
     <div>
-        {{ counter }}
-
-        <div v-if="counter > avisar">O número é maior que {{avisar}}</div>
-
-        <div>
-            <button @click="decrement">-</button>
-            <button @click="increment">+</button>
-        </div>
+      <b-button variant="success" @click="increment">+</b-button>
+      <b-button class="ml-2" variant="danger" @click="decrement">-</b-button>
     </div>
+    <div v-if="counter > warn">
+      O contador é maior que {{ warn }}
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'Counter',
-    props: ['avisar'],
-    computed: {
-        counter() {
-            return this.$store.state.counter;
-        }
-    },
-    methods: {
-        increment() {
-            this.$store.dispatch('increment');
-        },
-        decrement() {
-            this.$store.dispatch('decrement');
-        }
+  props: ['warn'],
+  data() {
+    return {
+      counter: 0,
     }
+  },
+  methods: {
+    increment() {
+      this.counter += 1;
+    },
+    decrement() {
+      this.counter -= 1;
+    },
+  }
 }
 </script>
